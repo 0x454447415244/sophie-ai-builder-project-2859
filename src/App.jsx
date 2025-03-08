@@ -1,31 +1,32 @@
 <CodeProject>
 ```tsx file="index.tsx"
 import Hero from "./components/hero";
-import AboutUs from "./components/about-us";
+import About from "./components/about";
 import Services from "./components/services";
 import Testimonials from "./components/testimonials";
 import BookingForm from "./components/booking-form";
 
-export default function Home() {
+const HomePage = () => {
   return (
     <main className="bg-white">
       <Hero />
-      <AboutUs />
+      <About />
       <Services />
       <Testimonials />
       <BookingForm />
     </main>
   );
-}
+};
+
+export default HomePage;
 ```
 
 ```tsx file="components/hero.tsx"
 const Hero = () => {
   return (
-    <section className="relative h-screen bg-cover bg-center" style={{ backgroundImage"url("/placeholder.svg?height=600&width=1200")" }}>
-      <div className="flex items-center justify-center h-full bg-black bg-opacity-50">
-        <h1 className="text-white text-5xl font-bold">Rent Your Dream Car Today!</h1>
-      </div>
+    <section className="relative bg-yellow-400 text-white h-screen flex items-center justify-center">
+      <h1 className="text-5xl font-bold">Welcome to Our Car Rental Service!</h1>
+      <p className="mt-4 text-xl">Your journey starts here. Rent your dream car today!</p>
     </section>
   );
 };
@@ -33,36 +34,36 @@ const Hero = () => {
 export default Hero;
 ```
 
-```tsx file="components/about-us.tsx"
-const AboutUs = () => {
+```tsx file="components/about.tsx"
+const About = () => {
   return (
-    <section className="py-20 px-10 text-center">
-      <h2 className="text-3xl font-bold mb-4">About Us</h2>
-      <p className="text-gray-700">
-        We are dedicated to providing the best car rental services to our customers. Our fleet is well-maintained and ready for your adventures!
+    <section className="p-8">
+      <h2 className="text-3xl font-bold">About Us</h2>
+      <p className="mt-4">
+        We are a dedicated car rental company providing the best vehicles for your travel needs. Our mission is to ensure you have a safe and enjoyable experience on the road.
       </p>
     </section>
   );
 };
 
-export default AboutUs;
+export default About;
 ```
 
 ```tsx file="components/services.tsx"
 const services = [
-  { name"Economy Car", price"$29/day" },
-  { name"Luxury Car", price"$59/day" },
-  { name"SUV", price"$49/day" },
+  { name"Economy Car", price"$30/day" },
+  { name"SUV", price"$50/day" },
+  { name"Luxury Car", price"$100/day" },
 ];
 
 const Services = () => {
   return (
-    <section className="py-20 px-10 text-center">
-      <h2 className="text-3xl font-bold mb-4">Our Services</h2>
-      <ul className="space-y-4">
-        {services.map((service) => (
-          <li key={service.name} className="text-lg">
-            {service.name}: {service.price}
+    <section className="p-8 bg-gray-100">
+      <h2 className="text-3xl font-bold">Our Services</h2>
+      <ul className="mt-4">
+        {services.map((service, index) => (
+          <li key={index} className="mb-2">
+            {service.name} - {service.price}
           </li>
         ))}
       </ul>
@@ -75,21 +76,22 @@ export default Services;
 
 ```tsx file="components/testimonials.tsx"
 const testimonials = [
-  { name"John Doe", text"Great service! The car was in perfect condition." },
-  { name"Jane Smith: ", text"Highly recommend! Friendly staff and easy booking process.' },
+  { name"John Doe", text"Great service and friendly staff!" },
+  { name"Jane Smith: ", text"I had an amazing experience renting a car!' },
 ];
 
 const Testimonials = () => {
   return (
-    <section className="py-20 px-10 text-center bg-gray-100">
-      <h2 className="text-3xl font-bold mb-4">Customer Testimonials</h2>
-      <div className="space-y-4">
-        {testimonials.map((testimonial) => (
-          <blockquote key={testimonial.name} className="italic">
-            "{testimonial.text}" - <footer className="font-semibold">{testimonial.name}</footer>
-          </blockquote>
+    <section className="p-8">
+      <h2 className="text-3xl font-bold">Customer Testimonials</h2>
+      <ul className="mt-4">
+        {testimonials.map((testimonial, index) => (
+          <li key={index} className="mb-4">
+            <p className="font-semibold">{testimonial.name}</p>
+            <p>{testimonial.text}</p>
+          </li>
         ))}
-      </div>
+      </ul>
     </section>
   );
 };
@@ -100,13 +102,28 @@ export default Testimonials;
 ```tsx file="components/booking-form.tsx"
 const BookingForm = () => {
   return (
-    <section className="py-20 px-10 text-center">
-      <h2 className="text-3xl font-bold mb-4">Book Your Car</h2>
-      <form className="flex flex-col space-y-4 max-w-md mx-auto">
-        <input type="text" placeholder="Your Name" className="border p-2" required />
-        <input type="email" placeholder="Your Email" className="border p-2" required />
-        <input type="date" className="border p-2" required />
-        <button type="submit" className="bg-blue-500 text-white p-2 rounded">Book Now</button>
+    <section className="p-8 bg-gray-100">
+      <h2 className="text-3xl font-bold">Book Your Car</h2>
+      <form className="mt-4">
+        <label className="block mb-2">
+          Name:
+          <input type="text" className="border p-2 w-full" required />
+        </label>
+        <label className="block mb-2">
+          Email:
+          <input type="email" className="border p-2 w-full" required />
+        </label>
+        <label className="block mb-2">
+          Car Type:
+          <select className="border p-2 w-full" required>
+            <option value="economy">Economy Car</option>
+            <option value="suv">SUV</option>
+            <option value="luxury">Luxury Car</option>
+          </select>
+        </label>
+        <button type="submit" className="bg-yellow-400 text-white p-2 mt-4">
+          Book Now
+        </button>
       </form>
     </section>
   );
@@ -116,4 +133,4 @@ export default BookingForm;
 ```
 </CodeProject>
 
-This code sets up a complete homepage for the car rental company, including all specified sections. You can further customize the styles and content as needed. Let me know if you need any modifications or additional features!
+This creates a complete car rental website structure with a homepage and necessary components. Let me know if you need any further modifications or additions!
